@@ -1,0 +1,256 @@
+ 
+== COMANDO PARA CONFIRGURAR ACESSO DA MINHA CONTA DA PLATAFORMA NA MINHA MÁQUINA 
+
+git config --global user.name "Andrea Monicque"    (configuração de forma global o acesso)
+git config --global -l (trás dados meus (email / usuário) ca)
+cat .gitconfig (sempre executar na home do meu usuário -Avell- onde configurei o acesso global/guarda todas as minhas informações num arquivo no repositório)
+nano .gitconfig (editar informações do )
+
+
+quando vc configura dentro de um repositório que já existe utiliza-se
+cat .git/config
+
+
+***FAZENDO UM DIRETÓRIO LOCAL
+
+criando um diretorio local : mkdir projetos
+entrar no diretorio: cd projetosp
+cria o repositório: git init
+ls -la no linux
+dir   no windows
+cd .git
+
+para mostrar a arvore dentro do git..repositorio: tree -L 1 .    
+
+verificar as configurações base para criar um repositorio: cat config
+
+quando eu crio um repositório dentro de uma pasta... aquela pasta se torna a master
+e quando entro no repositório que é o .git ... já desço um nível que não é na
+
+(criar esse arquivo na master não dentro do .gitgi
+criar arquivo: touch <nome do arquivo>
+touch index.html
+
+para subir um nivel: 
+
+cat 
+
+git status ()
+git rm --cached
+git add  arquivo
+git rm --cached index.html
+
+git status
+
+
+git add arquivo
+git commit
+ - digita o que vc quer na primeira linha... para salvar ... esc + :x + enter
+
+
+git log   (para verificar o commit feito)
+git log --ondeline (mostra a arvore de forma simplificada)
+git log --online graph
+gitk
+
+
+
+git status
+git add arquivo
+git commit -m aquivo
+git log
+git diff mostra a diferença do meu ultimo commit para o meu arquivo local
+git add aqv
+git commit -vs (para usar um commit com assinatura (email)) commitando com verificação e assinatura
+
+
+== PARA REVERTER O COMMIT
+
+gitk
+git log --oneline (pega a chave do commit do que vc quer reverter)
+git revert <numero da chave>
+verifica e ve se aconteceu
+
+git show master (mostra a brach master)
+git show <numero de chave do commit> (para mostra um commit que fizemos)
+git show index.html
+
+
+
+===comando de configuração para adicionar apelidos para os seus comandos
+git alias 
+
+===exemplo do comando para fazer isso
+git config --global alias.graph "log --oneline --graph"
+
+apelido: graph
+comando a ser guardado: "log --oneline --graph" 
+
+===chama o comando
+git graph
+cat ~/.gitconfig
+
+
+
+
+objeto commit é cada bolinha dos commit no gitk
+
+****CRIAR BRANCH  (checkout é o camndo para navegar entre branches)
+
+git branch dev-andreamonicque
+
+ ===para mostrar as branches
+git branch
+
+ ===para ir para uma branch
+git checkout dev-andreamonicque
+
+ ===para criar e já ficar nessa branch criada
+git checkout -b dev-andrea   (o checkout aponta para essa branch e o -b a cria)
+
+ ===para deletar uma branch
+git branch -d nomedabranch
+git branch -d -D (para deletar como super)
+
+gitk
+git graph
+git checkout chave do commit
+gitk
+git show
+git -version
+git --version
+
+
+git switch -c novabranch para guardar meus commits
+git switch - 
+
+
+
+***********SERVIDORES GIT
+
+há duas formas de integração de códigos
+
+merge - é mais fácil, mas não conta um história linear do projeto
+
+rebase - é mais elegante, ele já conta a história..(conjunto de commits) - praticamnete vc refaz o ponteiro da árvore - vc brinca com head que é o ponteiro
+
+===como dizer para o repositorio local que tem um repositorio remoto
+
+-criamos o repositorio remoto como o mesmo nome do local
+git remote add origin https://github.com/DevNicque/workshop-git.git
+
+
+====mostra o repositório remoto ligado
+git remote -v
+
+git status 
+=== 
+https://github.com/DevNicque/workshop-git.git (fecht) - servidor para o local, trás , mas não faz merge dos codigo, vc decide o que fazer
+https://github.com/DevNicque/workshop-git.git (push) - local para o servidor - desce e atualiza tudo, ou seja, coloca no repositorio e já aplica, faz merge
+https://github.com/DevNicque/workshop-git.git (pull) - servidor para o local - desce e atualiza tudo, ou seja, coloca no repositorio e já aplica, faz merge
+
+
+
+===agora adicionar o remoto raiz que será o remoto de referencia
+
+git remote add root-repo https://github.com/andreloureiro80/workshop-git.git
+
+
+gitk
+===como digo para o meu git local que tem outro remote e baixa
+git fetch root-repo
+
+===mostra os remotos baixados
+
+gitk --all
+
+===atualizar os rebases masters (une o remoto com o meu local)
+git rebase root-repo/master (master é a branch) -dará conflito
+
+===para ver as diferenças
+gi diff
+
+na diferença mostra dois blocos de codigo - o de cima é o que ta vindo e o de baixo é que tá na maquina
+
+
+conflito pode ser 2 commits referentes ao mesmo arquivo 
+====rotina para resolver o conflitos
+
+1 git status
+2 git diff
+3 resolva o conflito
+vai no atom e escolhe qual bloco de codigo vc quer usar
+4 git add <file>
+5 git rebase --continue
+
+com isso ele irá guardar o histórico de commits ou de versões do arquivo escolhido
+o rebase mantem a historia linear casando as duas arvores
+foi feito um clash de 2 arvores e colidiu pq em ambas havia um arqv com o mesmo nome, 
+este conflito foi tratado 
+
+
+pegamos um projeto em andamento e mergiamos as duas histórias
+
+===pegar o meu local e jogar como branch principal do remoto
+depois de ser convidado para colaborar e após casar o local com o remoto
+
+git checkout -b novoMaster
+git push root-repo novoMaster
+ - no github 1 pull request (mostra o que o colaborador fez )
+
+
+
+git fetch origin
+git rebase novoMaster
+git push origin 
+
+para apagar clone: rm -rf git-flow 
+===Como criar a prática do git flow
+
+git clone http://github.com/andreloureiro80/gitgit
+
+==criar uma branch pois nunca deve-se fazer commit na master
+
+git checkout -b feat/andre
+
+==
+cd git-flow
+
+==
+git remote -b
+
+==
+git remote -v
+
+==copiar o arqv do outro projeto
+cp ../workshop-git/index.html .
+
+== 
+ls
+
+==cria uma branch com meu nome
+
+git checkout -b feat/monicque
+
+copia o index do outro projeto pra dentro dela
+cp ../workshop-git/index.html .
+
+ls para 
+
+git status
+git add index.html
+git commit "index.html"
+git push origin feat/monicque (se der erro é pq não tenho permissão para colaborar)
+
+
+
+
+no git há 4 tipos de status: tracked, untracked, stage, modefield
+
+
+
+
+
+
+
+
